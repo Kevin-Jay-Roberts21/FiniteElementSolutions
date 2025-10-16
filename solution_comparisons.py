@@ -6,23 +6,16 @@ import matplotlib
 
 # defining the global vars
 L = 5 # length in cm
-dx = 0.1 # space step
+dx = 0.2 # space step
 M = int(L/dx) # total number of space steps
 Y_0 = 0
 Y_M = 2
 
 # Exact Analytical Solution
 ###########################
+x_exact = np.linspace(0, L, 10000)  # 10,000 points → visually continuous
+exact_Y = 2 * np.sin(2 * x_exact) / np.sin(2 * L)
 
-def exact_solution(x_i):
-    return 2*math.sin(2*x_i)/math.sin(2*L)
-
-exact_Y = np.zeros(M+1)
-exact_Y[0] = Y_0
-exact_Y[-1] = Y_M
-
-for i in range(1, M):
-    exact_Y[i] = exact_solution(i*dx)
 
 # Finite Difference Approximation
 #################################
@@ -64,8 +57,10 @@ fd_Y[1:-1] = fd_Y_inner
 
 # Plotting the solution and approximations
 x = np.linspace(0, L, M+1)
-plt.plot(x, exact_Y, label="Exact Solution")
+plt.plot(x_exact, exact_Y, label="Exact Solution")
 plt.plot(x, fd_Y, label="Finite Difference Solution")
+
+
 
 plt.xlabel('x in cm')
 plt.ylabel('y(x) in cm')
@@ -73,7 +68,3 @@ plt.title('Comparison of Solutions')
 plt.legend()
 plt.grid(True)
 plt.show()
-
-
-
-
