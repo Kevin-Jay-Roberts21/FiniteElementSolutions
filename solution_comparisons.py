@@ -5,7 +5,7 @@ import numpy as np
 
 # defining the global vars
 L = 10 # length in cm
-dx = 0.01 # space step
+dx = 0.05 # space step
 M = int(round(L/dx)) # total number of space steps
 dx = L/M # ensuring spacing matches the coordinates
 Y_0 = 0
